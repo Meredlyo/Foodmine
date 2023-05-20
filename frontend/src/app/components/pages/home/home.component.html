@@ -1,0 +1,39 @@
+<ul>
+  <!-- Loop through the foods array and display each food item in a list -->
+  <li *ngFor ="let food of foods">
+    <!-- Create a link to the food detail page with the food's ID as a parameter -->
+    <a routerLink="/food/{{food.id}}">
+      <!-- Display the food's image and name -->
+      <img [src]="food.imageUrl" [alt]="food.name"/>
+      <div class="content">
+        <div class="name">
+          {{food.name}}
+        </div>
+        <!-- Display a heart icon if the food is a favorite, and a not-filled heart icon if it is not -->
+        <span class="favorite {{food.favorite?'':'not'}}">
+          ♡
+        </span>
+        <div class="product-item-footer">
+          <!-- Display the food's origins -->
+          <div class="origins">
+            <span *ngFor="let origin of food.origins">
+              {{origin}}
+            </span>
+          </div>
+          <!-- Display the food's cook time -->
+          <div class="cook-time">
+            <span>🕒</span>
+            {{food.cookTime}}
+          </div>
+          <!-- Display the food's price -->
+          <div class="price">
+            <span>
+              <!-- Use the currency pipe to format the food's price as a currency value -->
+              {{food.price | currency}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>
